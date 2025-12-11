@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart – Riwaayat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .cart-page {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem 3rem;
+    }
+    .cart-header {
+      padding: 1.8rem 0 0.8rem;
+    }
+    .cart-title {
+      margin: 0 0 0.3rem;
+      font-size: 1.4rem;
+    }
+    .cart-subtitle {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .cart-list {
+      margin-top: 1.2rem;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .cart-row {
+      display: grid;
+      grid-template-columns: 1.6fr 0.6fr 0.6fr 0.3fr;
+      gap: 0.75rem;
+      padding: 0.8rem 1.1rem;
+      font-size: 0.9rem;
+      align-items: center;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    .cart-row--head {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      background: #fbf7f3;
+    }
+    .cart-row:last-child {
+      border-bottom: none;
+    }
+    .cart-name {
+      font-weight: 500;
+    }
+    .cart-qty-input {
+      width: 60px;
+      padding: 0.25rem 0.4rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      text-align: center;
+    }
+    .cart-remove {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .cart-summary {
+      margin-top: 1.3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+    .cart-total-label {
+      color: var(--muted);
+    }
+    .cart-total-value {
+      font-weight: 600;
+    }
+    .btn-primary {
+      border: none;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #ffffff;
+      padding: 0.55rem 1.4rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 768px) {
+      .cart-page { padding-inline: 1.2rem; }
+      .cart-row {
+        grid-template-columns: 1.5fr 0.6fr 0.6fr;
+        grid-template-areas:
+          "name name remove"
+          "price qty qty";
+        row-gap: 0.4rem;
+      }
+      .cart-name { grid-area: name; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-strip">
+    INDIA'S ONLY EXCLUSIVE STORE OF GEOGRAPHICAL INDICATIONS
+  </div>
+
+  <div class="site-header__bar">
+    <div class="brand-block">
+      <a href="index.html#home" class="brand-block__logo">Riwaayat</a>
+      <span class="brand-block__tagline">Stories of Indian Heritage</span>
+    </div>
+
+    <form class="header-search" action="#" role="search">
+      <input
+        type="search"
+        class="header-search__input"
+        placeholder="Search products..."
+        aria-label="Search products"
+      />
+    </form>
+
+    <div class="header-actions">
+      <a class="header-actions__link" href="login.html">Login / Register</a>
+        <a class="icon-button" href="wishlist.html">
+        <span class="icon-button__icon">♡</span>
+        <span class="icon-button__label">Wishlist</span>
+        <span class="icon-button__badge wishlist-badge">0</span>
+        </a>
+
+      <a class="icon-button" href="cart.html">
+        <span class="icon-button__icon">🛒</span>
+        <span class="icon-button__label">Cart</span>
+        <span class="icon-button__badge">0</span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html#home" class="site-nav__link">Home</a>
+      <a href="index.html#about" class="site-nav__link">About</a>
+      <a href="index.html#contact" class="site-nav__link">Contact</a>
+    </div>
+  </nav>
+
+  <main class="cart-page">
+    <header class="cart-header">
+      <h1 class="cart-title">Your Cart</h1>
+      <p class="cart-subtitle">Review your items before checkout.</p>
+    </header>
+
+    <section id="cartContainer"></section>
+
+    <div class="cart-summary" id="cartSummary" style="display:none;">
+      <div>
+        <span class="cart-total-label">Subtotal:</span>
+        <span class="cart-total-value" id="cartTotal"></span>
+      </div>
+      <button class="btn-primary" type="button">Proceed to checkout</button>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Riwaayat. Layout and code handcrafted for a better browsing experience.</p>
+  </footer>
+
+  <script src="assets/js/cart.js"></script>
+  <script>
+    const container = document.getElementById("cartContainer");
+    const summary = document.getElementById("cartSummary");
+    const totalEl = document.getElementById("cartTotal");
+
+    function renderCartPage() {
+      const cart = getCart();
+      if (!cart.length) {
+        container.innerHTML =
+          '<p style="color:#856a5f; font-size:0.9rem;">Your cart is empty.</p>';
+        summary.style.display = "none";
+        return;
+      }
+
+      summary.style.display = "flex";
+
+      let html = '<div class="cart-list">';
+      html +=
+        '<div class="cart-row cart-row--head"><span>Item</span><span>Price</span><span>Qty</span><span></span></div>';
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const lineTotal = (item.price || 0) * (item.quantity || 1);
+        total += lineTotal;
+        html += `
+          <div class="cart-row">
+            <span class="cart-name">${item.name}</span>
+            <span>₹ ${item.price.toLocaleString("en-IN")}</span>
+            <input
+              class="cart-qty-input"
+              type="number"
+              min="1"
+              value="${item.quantity || 1}"
+              data-index="${index}"
+            />
+            <button class="cart-remove" data-index="${index}">Remove</button>
+          </div>
+        `;
+      });
+
+      html += "</div>";
+      container.innerHTML = html;
+      totalEl.textContent = "₹ " + total.toLocaleString("en-IN");
+
+      // wire quantity change + remove
+      container.querySelectorAll(".cart-qty-input").forEach((input) => {
+        input.addEventListener("change", (e) => {
+          const i = Number(e.target.dataset.index);
+          const value = Math.max(1, Number(e.target.value) || 1);
+          const cartNow = getCart();
+          cartNow[i].quantity = value;
+          saveCart(cartNow);
+          updateCartBadge();
+          renderCartPage();
+        });
+      });
+
+      container.querySelectorAll(".cart-remove").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const i = Number(e.target.dataset.index);
+          const cartNow = getCart();
+          cartNow.splice(i, 1);
+          saveCart(cartNow);
+          updateCartBadge();
+          renderCartPage();
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", renderCartPage);
+  </script>
+</body>
+</html>

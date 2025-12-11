@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Wishlist – Riwaayat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- top strip + header + nav same as cart.html,
+       but wishlist button uses wishlist-badge class -->
+
+  <!-- ... copy from cart.html header, updating Wishlist anchor as above ... -->
+
+  <main class="cart-page">
+    <header class="cart-header">
+      <h1 class="cart-title">Your Wishlist</h1>
+      <p class="cart-subtitle">
+        Save items you love and move them to cart when ready.
+      </p>
+    </header>
+
+    <section id="wishlistContainer"></section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Riwaayat. Layout and code handcrafted for a better browsing experience.</p>
+  </footer>
+
+  <script src="assets/js/cart.js"></script>
+  <script>
+    const container = document.getElementById("wishlistContainer");
+
+    function renderWishlistPage() {
+      const list = getWishlist();
+      if (!list.length) {
+        container.innerHTML =
+          '<p style="color:#856a5f; font-size:0.9rem;">Your wishlist is empty.</p>';
+        return;
+      }
+
+      let html = '<div class="cart-list">';
+      list.forEach((item, index) => {
+        html += `
+          <div class="cart-row">
+            <span class="cart-name">${item.name}</span>
+            <span>₹ ${item.price.toLocaleString("en-IN")}</span>
+            <button class="btn-primary" data-index="${index}" data-action="move">
+              Move to cart
+            </button>
+            <button class="cart-remove" data-index="${index}" data-action="remove">
+              Remove
+            </button>
+          </div>
+        `;
+      });
+      html += "</div>";
+      container.innerHTML = html;
+
+      container.querySelectorAll("button").forEach((btn) => {
+        const index = Number(btn.dataset.index);
+        const action = btn.dataset.action;
+        btn.addEventListener("click", () => {
+          const listNow = getWishlist();
+          const item = listNow[index];
+          if (!item) return;
+
+          if (action === "move") {
+            addToCart({ id: item.id, name: item.name, price: item.price });
+          }
+          listNow.splice(index, 1);
+          saveWishlist(listNow);
+          updateWishlistBadge();
+          renderWishlistPage();
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", renderWishlistPage);
+  </script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Products by State – Riwaayat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .products-page {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem 3rem;
+    }
+    .products-header {
+      padding: 1.8rem 0 0.8rem;
+    }
+    .products-title {
+      font-size: 1.5rem;
+      margin: 0 0 0.3rem;
+    }
+    .products-subtitle {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .products-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: space-between;
+      margin: 1.2rem 0 1.4rem;
+    }
+    .products-controls__left,
+    .products-controls__right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .products-select,
+    .products-search {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.1rem;
+    }
+    .product-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      padding: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.05);
+    }
+    .product-card__image {
+      width: 100%;
+      border-radius: 12px;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 0.4rem;
+    }
+    .product-card__name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .product-card__meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .product-card__bottom {
+      margin-top: 0.3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .product-card__price {
+      font-weight: 600;
+    }
+    .product-card__btn {
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.8rem;
+      padding: 0.35rem 0.9rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    @media (max-width: 768px) {
+      .products-page {
+        padding-inline: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Reuse top strip + header + nav from index -->
+  <div class="top-strip">
+    INDIA'S ONLY EXCLUSIVE STORE OF GEOGRAPHICAL INDICATIONS
+  </div>
+
+  <div class="site-header__bar">
+    <div class="brand-block">
+      <a href="index.html#home" class="brand-block__logo">Riwaayat</a>
+      <span class="brand-block__tagline">Stories of Indian Heritage</span>
+    </div>
+
+    <form class="header-search" action="#" role="search">
+      <input
+        type="search"
+        class="header-search__input"
+        placeholder="Search products..."
+        aria-label="Search products"
+      />
+    </form>
+
+    <div class="header-actions">
+      <a class="header-actions__link" href="login.html">Login / Register</a>
+        <a class="icon-button" href="wishlist.html">
+        <span class="icon-button__icon">♡</span>
+        <span class="icon-button__label">Wishlist</span>
+        <span class="icon-button__badge wishlist-badge">0</span>
+        </a>
+      <a class="icon-button" href="cart.html">
+        <span class="icon-button__icon">🛒</span>
+        <span class="icon-button__label">Cart</span>
+        <span class="icon-button__badge">0</span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html#home" class="site-nav__link">Home</a>
+      <a href="index.html#about" class="site-nav__link">About</a>
+      <a href="index.html#contact" class="site-nav__link">Contact</a>
+      <a href="index.html#map" class="site-nav__link">Map</a>
+    </div>
+  </nav>
+
+  <main class="products-page">
+    <header class="products-header">
+      <h1 id="productsTitle" class="products-title">Products</h1>
+      <p id="productsSubtitle" class="products-subtitle">
+        Curated items from this region.
+      </p>
+    </header>
+
+    <section class="products-controls" aria-label="Filter and sort products">
+      <div class="products-controls__left">
+        <input
+          id="productsSearch"
+          type="search"
+          class="products-search"
+          placeholder="Search"
+        />
+      </div>
+      <div class="products-controls__right">
+        <select id="productsCategory" class="products-select">
+          <option value="">All categories</option>
+          <option value="textile">Textiles</option>
+          <option value="handicraft">Handicrafts</option>
+          <option value="food">Food</option>
+        </select>
+        <select id="productsSort" class="products-select">
+          <option value="relevance">Sort: Relevance</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="productsGrid" class="products-grid" aria-label="Products list">
+      <!-- product cards injected via inline JS below -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Riwaayat. Layout and code handcrafted for a better browsing experience.</p>
+  </footer>
+
+  <script>
+    // Simple demo data – adjust to your real products
+    const allProducts = [
+      {
+        state: "Jammu and Kashmir",
+        name: "Pashmina Shawl",
+        category: "textile",
+        price: 3200,
+        image: "assets/img/pashmina.jpg",
+        meta: "Handwoven, natural dyes"
+      },
+      {
+        state: "Jammu and Kashmir",
+        name: "Walnut Wood Box",
+        category: "handicraft",
+        price: 1800,
+        image: "assets/img/walnut-box.jpg",
+        meta: "Intricate carving"
+      },
+      {
+        state: "Himachal Pradesh",
+        name: "Kullu Shawl",
+        category: "textile",
+        price: 2100,
+        image: "assets/img/kullu-shawl.jpg",
+        meta: "Traditional border motifs"
+      }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const stateParam = params.get("state") || "Selected State";
+
+    const productsTitle = document.getElementById("productsTitle");
+    const productsSubtitle = document.getElementById("productsSubtitle");
+    const grid = document.getElementById("productsGrid");
+    const searchInput = document.getElementById("productsSearch");
+    const categorySelect = document.getElementById("productsCategory");
+    const sortSelect = document.getElementById("productsSort");
+
+    productsTitle.textContent = stateParam;
+    productsSubtitle.textContent =
+      "Showing products curated from " + stateParam + ".";
+
+    let currentProducts = allProducts.filter(
+      (p) => p.state === stateParam
+    );
+
+    function renderProducts(list) {
+      grid.innerHTML = "";
+      if (!list.length) {
+        grid.innerHTML =
+          '<p style="color:#856a5f; font-size:0.9rem;">No products found for this combination.</p>';
+        return;
+      }
+      list.forEach((p) => {
+        const card = document.createElement("article");
+        card.className = "product-card";
+
+        if (p.image) {
+          const img = document.createElement("img");
+          img.className = "product-card__image";
+          img.src = p.image;
+          img.alt = p.name;
+          card.appendChild(img);
+        }
+
+        const name = document.createElement("div");
+        name.className = "product-card__name";
+        name.textContent = p.name;
+        card.appendChild(name);
+
+        const meta = document.createElement("div");
+        meta.className = "product-card__meta";
+        meta.textContent = p.meta || "";
+        card.appendChild(meta);
+
+        const bottom = document.createElement("div");
+        bottom.className = "product-card__bottom";
+
+        const price = document.createElement("div");
+        price.className = "product-card__price";
+        price.textContent = "₹ " + p.price.toLocaleString("en-IN");
+
+        const btn = document.createElement("button");
+        btn.className = "product-card__btn";
+        btn.type = "button";
+        btn.textContent = "Add to cart";
+
+        bottom.appendChild(price);
+        bottom.appendChild(btn);
+        card.appendChild(bottom);
+
+        grid.appendChild(card);
+      });
+    }
+
+    function applyProductFilters() {
+      const term = (searchInput.value || "").toLowerCase().trim();
+      const cat = categorySelect.value;
+      const sort = sortSelect.value;
+
+      let list = currentProducts.filter((p) => {
+        const matchesText =
+          !term ||
+          p.name.toLowerCase().includes(term) ||
+          (p.meta || "").toLowerCase().includes(term);
+        const matchesCat = !cat || p.category === cat;
+        return matchesText && matchesCat;
+      });
+
+      if (sort === "price-asc") {
+        list = list.slice().sort((a, b) => a.price - b.price);
+      } else if (sort === "price-desc") {
+        list = list.slice().sort((a, b) => b.price - a.price);
+      }
+
+      renderProducts(list);
+    }
+
+    searchInput.addEventListener("input", () => {
+      clearTimeout(searchInput._debounce);
+      searchInput._debounce = setTimeout(applyProductFilters, 120);
+    });
+    categorySelect.addEventListener("change", applyProductFilters);
+    sortSelect.addEventListener("change", applyProductFilters);
+
+    renderProducts(currentProducts);
+  </script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/products.js"></script>
+</body>
+</html>

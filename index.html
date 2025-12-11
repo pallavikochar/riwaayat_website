@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shop Products of India, State Wise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="top-strip">
+      <span class="top-strip__text">
+        India's only exclusive store of Geographical Indications
+      </span>
+    </div>
+
+    <div class="site-header__bar">
+      <!-- Left: brand -->
+      <div class="brand-block">
+        <a href="#home" class="brand-block__logo">Riwaayat</a>
+        <span class="brand-block__tagline">Stories of Indian Heritage</span>
+        </div>
+
+      <!-- Center: search -->
+      <form class="header-search" action="#" role="search">
+        <input
+          type="search"
+          class="header-search__input"
+          placeholder="Search products..."
+          aria-label="Search products"
+        />
+      </form>
+
+      <!-- Right: account / wishlist / cart -->
+      <div class="header-actions">
+        <a class="header-actions__link" href="login.html">
+          Login / Register
+        </a>
+        <a class="icon-button" href="wishlist.html">
+          <span class="icon-button__icon">♡</span>
+          <span class="icon-button__badge wishlist-badge">0</span>
+        </a>
+        <a class="icon-button" href="cart.html">
+          <span class="icon-button__icon">🛒</span>
+          <span class="icon-button__badge">0</span>
+        </a>
+
+      </div>
+    </div>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a href="#home" class="site-nav__link">Home</a>
+        <a href="#about" class="site-nav__link">About</a>
+        <a href="#contact" class="site-nav__link">Contact</a>
+        <a href="#map" class="site-nav__link">Map</a>
+      </div>
+    </nav>
+    <div class="site-header__hero" id="home">
+      <h1 class="site-title">
+        Shop Cultural Products of India, State Wise
+      </h1>
+      <p class="site-subtitle">Authenticity Guaranteed</p>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="controls" aria-label="Filters">
+      <input
+        id="searchInput"
+        type="text"
+        class="controls__search"
+        placeholder="Search state..."
+        autocomplete="off"
+      />
+      <select id="regionFilter" class="controls__select">
+        <option value="">All regions</option>
+        <option value="North">North</option>
+        <option value="South">South</option>
+        <option value="East">East</option>
+        <option value="West">West</option>
+        <option value="Northeast">Northeast</option>
+      </select>
+    </section>
+
+    <section
+      id="stateGrid"
+      class="state-grid"
+      aria-label="Statewise product cards"
+    ></section>
+
+    <section id="map" class="page-section">
+      <h2 class="page-section__title">Explore by Map</h2>
+      <p class="page-section__text">
+        Click on a state to jump directly to its curated products.
+      </p>
+
+      <div class="india-map-wrapper">
+        <object
+          type="image/svg+xml"
+          data="assets/img/india.svg"
+          class="india-map-object"
+          aria-label="Interactive map of India"
+        ></object>
+      </div>
+    </section>
+
+    <section id="about" class="page-section">
+      <h2 class="page-section__title">About</h2>
+      <p class="page-section__text">
+        This concept page showcases statewise cards inspired by Riwayat's TAGGED
+        products, with an emphasis on clean visuals and easy navigation.
+      </p>
+    </section>
+
+    <section id="contact" class="page-section">
+      <h2 class="page-section__title">Contact</h2>
+      <p class="page-section__text">
+        Connect with Riwaayat on social platforms for product updates and support.
+      </p>
+
+      <div class="contact-social">
+        <a
+          href="https://www.instagram.com/your_handle"
+          class="contact-social__item contact-social__item--instagram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="contact-social__icon">📷</span>
+          <span class="contact-social__label">@your_handle</span>
+        </a>
+
+        <a
+          href="https://wa.me/911234567890"
+          class="contact-social__item contact-social__item--whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="contact-social__icon">💬</span>
+          <span class="contact-social__label">+91‑12345‑67890</span>
+        </a>
+      </div>
+    </section>
+
+    </section>
+  </main>
+
+  <footer class="ln-footer">
+    <div class="ln-footer__top">
+      <!-- Brand + social -->
+      <div class="ln-footer__col ln-footer__brand">
+        <div class="ln-footer-logo">Riwaayat</div>
+        <div class="ln-footer-logo__tagline">Stories of Indian Heritage</div>
+
+        <div class="ln-footer-social">
+          <a href="#" aria-label="Instagram" class="ln-footer-social__icon">IG</a>
+          <a href="#" aria-label="Facebook" class="ln-footer-social__icon">FB</a>
+          <a href="#" aria-label="LinkedIn" class="ln-footer-social__icon">IN</a>
+        </div>
+      </div>
+
+      <!-- Discover -->
+      <div class="ln-footer__col">
+        <h3 class="ln-footer__title">Discover</h3>
+        <a href="#" class="ln-footer__link">Sell with us</a>
+        <a href="#" class="ln-footer__link">Track your order</a>
+      </div>
+
+      <!-- Explore -->
+      <div class="ln-footer__col">
+        <h3 class="ln-footer__title">Explore</h3>
+        <a href="#" class="ln-footer__link">Clothing</a>
+        <a href="#" class="ln-footer__link">Jewellery</a>
+        <a href="#" class="ln-footer__link">Home &amp; Lifestyle</a>
+        <a href="#" class="ln-footer__link">Kitchen &amp; Dining</a>
+        <a href="#" class="ln-footer__link">Bags</a>
+        <a href="#" class="ln-footer__link">Stationery</a>
+      </div>
+
+      <!-- Policies -->
+      <div class="ln-footer__col">
+        <h3 class="ln-footer__title">Policies</h3>
+        <a href="#" class="ln-footer__link">Terms of Use</a>
+        <a href="#" class="ln-footer__link">Privacy Policy</a>
+        <a href="#" class="ln-footer__link">FAQs</a>
+      </div>
+
+      <!-- Contact -->
+      <div class="ln-footer__col ln-footer__col--contact">
+        <h3 class="ln-footer__title">Contact Us</h3>
+        <p class="ln-footer__text">Email: care@riwaayat.in</p>
+        <p class="ln-footer__text">
+          Address: Add your studio or warehouse address here.
+        </p>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="ln-footer__col ln-footer__col--newsletter">
+        <h3 class="ln-footer__title">Newsletter</h3>
+        <p class="ln-footer__text">
+          Subscribe to hear about new launches and curated collections.
+        </p>
+        <form class="ln-footer__newsletter" action="#" method="post">
+          <input
+            type="email"
+            class="ln-footer__newsletter-input"
+            placeholder="Enter email address"
+            required
+          />
+          <button type="submit" class="ln-footer__newsletter-btn">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="ln-footer__bottom">
+      <p class="ln-footer__bottom-text">
+        © 2025 Indian Culture Inspired Store. Layout and code handcrafted for a better
+      browsing experience.
+      </p>
+    </div>
+  </footer>
+  
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+  
+</body

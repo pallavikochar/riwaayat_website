@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login / Register – Riwaayat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* Page-specific tweaks for auth layout */
+    .auth-page {
+      max-width: 960px;
+      margin: 3rem auto 4rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .auth-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      padding: 1.8rem 1.6rem;
+    }
+    .auth-card__title {
+      margin: 0 0 0.4rem;
+      font-size: 1.15rem;
+    }
+    .auth-card__subtitle {
+      margin: 0 0 1.1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .auth-field {
+      margin-bottom: 0.9rem;
+    }
+    .auth-label {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 0.25rem;
+      color: var(--muted);
+    }
+    .auth-input {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      padding: 0.55rem 0.9rem;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .auth-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(139,31,36,0.12);
+      background: #fffdfb;
+    }
+    .auth-actions {
+      margin-top: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .btn-primary {
+      border: none;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #ffffff;
+      padding: 0.55rem 1.4rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+    }
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: #a0272b;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.16);
+      transform: translateY(-1px);
+    }
+    .auth-link {
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .auth-extra {
+      margin-top: 0.8rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- reuse same top strip + header as index -->
+  <div class="top-strip">
+    INDIA'S ONLY EXCLUSIVE STORE OF GEOGRAPHICAL INDICATIONS
+  </div>
+
+  <div class="site-header__bar">
+    <div class="brand-block">
+      <a href="index.html#home" class="brand-block__logo">Riwaayat</a>
+      <span class="brand-block__tagline">Stories of Indian Heritage</span>
+    </div>
+
+    <form class="header-search" action="#" role="search">
+      <input
+        type="search"
+        class="header-search__input"
+        placeholder="Search products..."
+        aria-label="Search products"
+      />
+    </form>
+
+    <div class="header-actions">
+      <a class="header-actions__link" href="login.html">
+        Login / Register
+      </a>
+      <button class="icon-button" type="button">
+        <span class="icon-button__icon">♡</span>
+        <span class="icon-button__label">Wishlist</span>
+      </button>
+      <button class="icon-button" type="button">
+        <span class="icon-button__icon">🛒</span>
+        <span class="icon-button__label">Cart</span>
+        <span class="icon-button__badge">0</span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html#home" class="site-nav__link">Home</a>
+      <a href="index.html#about" class="site-nav__link">About</a>
+      <a href="index.html#contact" class="site-nav__link">Contact</a>
+    </div>
+  </nav>
+
+  <main class="auth-page">
+    <!-- Login card -->
+    <section class="auth-card" aria-label="Login">
+      <h1 class="auth-card__title">Login</h1>
+      <p class="auth-card__subtitle">Welcome back to Riwaayat.</p>
+
+      <form action="#" method="post">
+        <div class="auth-field">
+          <label class="auth-label" for="login-email">Email</label>
+          <input id="login-email" name="email" type="email" required class="auth-input" />
+        </div>
+
+        <div class="auth-field">
+          <label class="auth-label" for="login-password">Password</label>
+          <input id="login-password" name="password" type="password" required class="auth-input" />
+        </div>
+
+        <div class="auth-actions">
+          <button type="submit" class="btn-primary">Login</button>
+          <a href="#" class="auth-link">Forgot password?</a>
+        </div>
+
+        <p class="auth-extra">
+          By logging in you agree to our terms and privacy policy.
+        </p>
+      </form>
+    </section>
+
+    <!-- Register card -->
+    <section class="auth-card" aria-label="Register">
+      <h2 class="auth-card__title">Create an account</h2>
+      <p class="auth-card__subtitle">
+        Save your favourites and track your orders.
+      </p>
+
+      <form action="#" method="post">
+        <div class="auth-field">
+          <label class="auth-label" for="reg-name">Full name</label>
+          <input id="reg-name" name="name" type="text" required class="auth-input" />
+        </div>
+
+        <div class="auth-field">
+          <label class="auth-label" for="reg-email">Email</label>
+          <input id="reg-email" name="email" type="email" required class="auth-input" />
+        </div>
+
+        <div class="auth-field">
+          <label class="auth-label" for="reg-password">Password</label>
+          <input id="reg-password" name="password" type="password" required class="auth-input" />
+        </div>
+
+        <div class="auth-field">
+          <label class="auth-label" for="reg-confirm">Confirm password</label>
+          <input id="reg-confirm" name="confirm" type="password" required class="auth-input" />
+        </div>
+
+        <div class="auth-actions">
+          <button type="submit" class="btn-primary">Register</button>
+        </div>
+
+        <p class="auth-extra">
+          Already have an account?
+          <a href="#login-email" class="auth-link">Login here</a>.
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Riwaayat. Layout and code handcrafted for a better browsing experience.</p>
+  </footer>
+</body>
+</html>
