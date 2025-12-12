@@ -118,6 +118,7 @@
 
     <form class="header-search" action="#" role="search">
       <input
+        id="globalSearch"
         type="search"
         class="header-search__input"
         placeholder="Search products..."
@@ -129,12 +130,10 @@
       <a class="header-actions__link" href="login.html">Login / Register</a>
         <a class="icon-button" href="wishlist.html">
         <span class="icon-button__icon">♡</span>
-        <span class="icon-button__label">Wishlist</span>
         <span class="icon-button__badge wishlist-badge">0</span>
         </a>
       <a class="icon-button" href="cart.html">
         <span class="icon-button__icon">🛒</span>
-        <span class="icon-button__label">Cart</span>
         <span class="icon-button__badge">0</span>
       </a>
     </div>
@@ -186,15 +185,88 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <p>© 2025 Riwaayat. Layout and code handcrafted for a better browsing experience.</p>
+  <footer class="ln-footer">
+    <div class="ln-footer__top">
+      <!-- Brand + social -->
+      <div class="ln-footer__col ln-footer__brand">
+        <div class="ln-footer-logo">Riwaayat</div>
+        <div class="ln-footer-logo__tagline">Stories of Indian Heritage</div>
+
+        <div class="ln-footer-social">
+          <a href="#" aria-label="Instagram" class="ln-footer-social__icon">IG</a>
+          <a href="#" aria-label="Facebook" class="ln-footer-social__icon">FB</a>
+          <a href="#" aria-label="LinkedIn" class="ln-footer-social__icon">IN</a>
+        </div>
+      </div>
+
+      <!-- Discover -->
+      <div class="ln-footer__col">
+        <h3 class="ln-footer__title">Discover</h3>
+        <a href="#" class="ln-footer__link">Sell with us</a>
+        <a href="#" class="ln-footer__link">Track your order</a>
+      </div>
+
+      <!-- Explore -->
+      <div class="ln-footer__col">
+        <h3 class="ln-footer__title">Explore</h3>
+        <a href="#" class="ln-footer__link">Clothing</a>
+        <a href="#" class="ln-footer__link">Jewellery</a>
+        <a href="#" class="ln-footer__link">Home &amp; Lifestyle</a>
+        <a href="#" class="ln-footer__link">Kitchen &amp; Dining</a>
+        <a href="#" class="ln-footer__link">Bags</a>
+        <a href="#" class="ln-footer__link">Stationery</a>
+      </div>
+
+      <!-- Policies -->
+      <div class="ln-footer__col">
+        <h3 class="ln-footer__title">Policies</h3>
+        <a href="#" class="ln-footer__link">Terms of Use</a>
+        <a href="#" class="ln-footer__link">Privacy Policy</a>
+        <a href="#" class="ln-footer__link">FAQs</a>
+      </div>
+
+      <!-- Contact -->
+      <div class="ln-footer__col ln-footer__col--contact">
+        <h3 class="ln-footer__title">Contact Us</h3>
+        <p class="ln-footer__text">Email: care@riwaayat.in</p>
+        <p class="ln-footer__text">
+          Address: Add your studio or warehouse address here.
+        </p>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="ln-footer__col ln-footer__col--newsletter">
+        <h3 class="ln-footer__title">Newsletter</h3>
+        <p class="ln-footer__text">
+          Subscribe to hear about new launches and curated collections.
+        </p>
+        <form class="ln-footer__newsletter" action="#" method="post">
+          <input
+            type="email"
+            class="ln-footer__newsletter-input"
+            placeholder="Enter email address"
+            required
+          />
+          <button type="submit" class="ln-footer__newsletter-btn">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="ln-footer__bottom">
+      <p class="ln-footer__bottom-text">
+        © 2025 Indian Culture Inspired Store. Layout and code handcrafted for a better
+      browsing experience.
+      </p>
+    </div>
   </footer>
 
   <script>
     // Simple demo data – adjust to your real products
     const allProducts = [
       {
-        state: "Jammu and Kashmir",
+        state: "Jammu-Kashmir",
         name: "Pashmina Shawl",
         category: "textile",
         price: 3200,
@@ -202,7 +274,7 @@
         meta: "Handwoven, natural dyes"
       },
       {
-        state: "Jammu and Kashmir",
+        state: "Jammu-Kashmir",
         name: "Walnut Wood Box",
         category: "handicraft",
         price: 1800,
