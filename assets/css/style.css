@@ -3,7 +3,7 @@
   --bg-alt: #ffffff;
   --text: #2b1a17;
   --muted: #856a5f;
-  --accent: #8b1f24;
+  --accent: #82471a;
   --accent-soft: #f4dfdb;
   --border-soft: #e4d3c8;
   --radius-lg: 18px;
@@ -22,6 +22,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 body {
@@ -31,6 +32,56 @@ body {
   color: var(--text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+footer,
+.page {
+  flex: 1 0 auto;
+}
+
+.ln-footer {
+  flex-shrink: 0;
+}
+
+/* Position dropdown relative to the header search form */
+.header-search {
+  position: relative;
+}
+
+/* Results box, absolutely positioned under existing input */
+.header-search__results {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 4px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+  z-index: 20;
+  max-height: 260px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+}
+
+.header-search__result-item {
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.header-search__result-item span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.header-search__result-item:hover,
+.header-search__result-item:focus-visible {
+  background: #fff7f3;
 }
 
 /* Top info strip */
@@ -130,7 +181,7 @@ body {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
-  color: #8b1f24;
+  color: #82471a;
 }
 
 .brand-block__tagline {
@@ -199,7 +250,7 @@ body {
 .header-actions__link:hover,
 .header-actions__link:focus-visible {
   background: #fff7f3;
-  color: #a0272b;
+  color: #82471a;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   transform: translateY(-1px);
 }
@@ -651,7 +702,7 @@ body {
 /* Hover / focus states */
 .product-card__btn:hover,
 .product-card__btn:focus-visible {
-  background: #a0272b; /* slightly brighter */
+  background: #6f3b14; /* slightly brighter */
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
   transform: translateY(-1px);
 }
@@ -791,7 +842,7 @@ body {
   border-radius: 0 999px 999px 0;
   padding: 0.45rem 1.1rem;
   font-size: 0.85rem;
-  background: #7e0022;
+  background: #82471a;
   color: #ffffff;
   cursor: pointer;
 }
@@ -827,4 +878,14 @@ body {
   .ln-footer__top {
     grid-template-columns: 1fr;
   }
+}
+
+#wrapper,
+.site-content,
+main {
+  flex: 1 0 auto;
+}
+
+.ln-footer {
+  flex-shrink: 0;
 }
