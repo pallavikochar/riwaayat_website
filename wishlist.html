@@ -5,17 +5,157 @@
   <title>Your Wishlist – Riwaayat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    .wishlist-page {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem 3rem;
+    }
+
+    .wishlist-header {
+      padding: 1.8rem 0 0.8rem;
+    }
+
+    .wishlist-title {
+      margin: 0 0 0.3rem;
+      font-size: 1.4rem;
+    }
+
+    .wishlist-subtitle {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .wishlist-list {
+      margin-top: 1.2rem;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .wishlist-row {
+      display: grid;
+      grid-template-columns: 2fr 0.8fr 0.9fr 0.7fr;
+      gap: 0.75rem;
+      padding: 0.8rem 1.1rem;
+      font-size: 0.9rem;
+      align-items: center;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .wishlist-row--head {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      background: #fbf7f3;
+    }
+
+    .wishlist-row:last-child {
+      border-bottom: none;
+    }
+
+    .wishlist-name {
+      font-weight: 500;
+    }
+
+    .wishlist-move-btn {
+      border: none;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #ffffff;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .wishlist-remove-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .wishlist-page {
+        padding-inline: 1.2rem;
+      }
+
+      .wishlist-row {
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas:
+          "name name"
+          "price move"
+          "price remove";
+        row-gap: 0.35rem;
+      }
+
+      .wishlist-name {
+        grid-area: name;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- top strip + header + nav same as cart.html,
-       but wishlist button uses wishlist-badge class -->
+  <!-- Top strip -->
+  <div class="top-strip">
+    INDIA'S ONLY EXCLUSIVE STORE OF GEOGRAPHICAL INDICATIONS
+  </div>
 
-  <!-- ... copy from cart.html header, updating Wishlist anchor as above ... -->
+  <!-- Header -->
+  <div class="site-header__bar">
+    <div class="brand-block">
+      <a href="index.html#home" class="brand-block__logo">Riwaayat</a>
+      <span class="brand-block__tagline">Stories of Indian Heritage</span>
+    </div>
 
-  <main class="cart-page">
-    <header class="cart-header">
-      <h1 class="cart-title">Your Wishlist</h1>
-      <p class="cart-subtitle">
+    <form class="header-search" action="#" role="search">
+      <input
+        id="globalSearch"
+        type="search"
+        class="header-search__input"
+        placeholder="Search products..."
+        aria-label="Search products"
+      />
+    </form>
+
+    <div class="header-actions">
+      <a class="header-actions__link" href="login.html">Login / Register</a>
+      <a class="icon-button" href="wishlist.html">
+        <span class="icon-button__icon">♡</span>
+        <span class="icon-button__badge wishlist-badge">0</span>
+      </a>
+      <a class="icon-button" href="cart.html">
+        <span class="icon-button__icon">🛒</span>
+        <span class="icon-button__badge">0</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html#home" class="site-nav__link">Home</a>
+      <a href="index.html#about" class="site-nav__link">About</a>
+      <a href="index.html#contact" class="site-nav__link">Contact</a>
+      <a href="index.html#map" class="site-nav__link">Map</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="wishlist-page">
+    <header class="wishlist-header">
+      <h1 class="wishlist-title">Your Wishlist</h1>
+      <p class="wishlist-subtitle">
         Save items you love and move them to cart when ready.
       </p>
     </header>
@@ -23,53 +163,128 @@
     <section id="wishlistContainer"></section>
   </main>
 
-  <footer class="site-footer">
-    <p>© 2025 Riwaayat. Layout and code handcrafted for a better browsing experience.</p>
+  <!-- Footer -->
+  <footer class="ln-footer">
+    <div class="ln-footer__top">
+      <div class="ln-footer__col ln-footer__brand">
+        <div class="ln-footer-logo">Riwaayat</div>
+        <div class="ln-footer-logo__tagline">Stories of Indian Heritage</div>
+
+        <div class="ln-footer-social">
+          <a href="#" aria-label="Instagram" class="ln-footer-social__icon">IG</a>
+          <a href="#" aria-label="Facebook" class="ln-footer-social__icon">FB</a>
+          <a href="#" aria-label="LinkedIn" class="ln-footer-social__icon">IN</a>
+        </div>
+      </div>
+
+      <div class="ln-footer__col">
+        <h3 class="ln-footer__title">Discover</h3>
+        <a href="#" class="ln-footer__link">Sell with us</a>
+        <a href="#" class="ln-footer__link">Track your order</a>
+      </div>
+
+      <div class="ln-footer__col">
+        <h3 class="ln-footer__title">Explore</h3>
+        <a href="#" class="ln-footer__link">Clothing</a>
+        <a href="#" class="ln-footer__link">Jewellery</a>
+        <a href="#" class="ln-footer__link">Home &amp; Lifestyle</a>
+        <a href="#" class="ln-footer__link">Kitchen &amp; Dining</a>
+        <a href="#" class="ln-footer__link">Bags</a>
+        <a href="#" class="ln-footer__link">Stationery</a>
+      </div>
+
+      <div class="ln-footer__col">
+        <h3 class="ln-footer__title">Policies</h3>
+        <a href="#" class="ln-footer__link">Terms of Use</a>
+        <a href="#" class="ln-footer__link">Privacy Policy</a>
+        <a href="#" class="ln-footer__link">FAQs</a>
+      </div>
+
+      <div class="ln-footer__col ln-footer__col--contact">
+        <h3 class="ln-footer__title">Contact Us</h3>
+        <p class="ln-footer__text">Email: care@riwaayat.in</p>
+        <p class="ln-footer__text">
+          Address: Add your studio or warehouse address here.
+        </p>
+      </div>
+
+      <div class="ln-footer__col ln-footer__col--newsletter">
+        <h3 class="ln-footer__title">Newsletter</h3>
+        <p class="ln-footer__text">
+          Subscribe to hear about new launches and curated collections.
+        </p>
+        <form class="ln-footer__newsletter" action="#" method="post">
+          <input
+            type="email"
+            class="ln-footer__newsletter-input"
+            placeholder="Enter email address"
+            required
+          />
+          <button type="submit" class="ln-footer__newsletter-btn">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="ln-footer__bottom">
+      <p class="ln-footer__bottom-text">
+        © 2025 Indian Culture Inspired Store. Layout and code handcrafted for a better
+        browsing experience.
+      </p>
+    </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="assets/js/cart.js"></script>
   <script>
-    const container = document.getElementById("wishlistContainer");
+    const wishlistContainer = document.getElementById("wishlistContainer");
 
     function renderWishlistPage() {
       const list = getWishlist();
       if (!list.length) {
-        container.innerHTML =
+        wishlistContainer.innerHTML =
           '<p style="color:#856a5f; font-size:0.9rem;">Your wishlist is empty.</p>';
         return;
       }
 
-      let html = '<div class="cart-list">';
+      let html = '<div class="wishlist-list">';
+      html +=
+        '<div class="wishlist-row wishlist-row--head"><span>Item</span><span>Price</span><span></span><span></span></div>';
+
       list.forEach((item, index) => {
         html += `
-          <div class="cart-row">
-            <span class="cart-name">${item.name}</span>
+          <div class="wishlist-row">
+            <span class="wishlist-name">${item.name}</span>
             <span>₹ ${item.price.toLocaleString("en-IN")}</span>
-            <button class="btn-primary" data-index="${index}" data-action="move">
+            <button class="wishlist-move-btn" data-index="${index}" data-action="move">
               Move to cart
             </button>
-            <button class="cart-remove" data-index="${index}" data-action="remove">
+            <button class="wishlist-remove-btn" data-index="${index}" data-action="remove">
               Remove
             </button>
           </div>
         `;
       });
-      html += "</div>";
-      container.innerHTML = html;
 
-      container.querySelectorAll("button").forEach((btn) => {
+      html += "</div>";
+      wishlistContainer.innerHTML = html;
+
+      wishlistContainer.querySelectorAll("button").forEach((btn) => {
         const index = Number(btn.dataset.index);
         const action = btn.dataset.action;
+
         btn.addEventListener("click", () => {
-          const listNow = getWishlist();
-          const item = listNow[index];
+          const current = getWishlist();
+          const item = current[index];
           if (!item) return;
 
           if (action === "move") {
             addToCart({ id: item.id, name: item.name, price: item.price });
           }
-          listNow.splice(index, 1);
-          saveWishlist(listNow);
+
+          current.splice(index, 1);
+          saveWishlist(current);
           updateWishlistBadge();
           renderWishlistPage();
         });
