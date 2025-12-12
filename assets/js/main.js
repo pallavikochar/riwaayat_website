@@ -18,7 +18,7 @@ const states = [
     description: "Mountain temples and traditional woolens.",
     image: "himachal-pradesh.jpg",
     silhouette: "hp-outline.png",
-    url: "#",
+    url: "products.html?state=Himachal-Pradesh",
     hintText: "Shawls, metal crafts, and wooden art."
   },
   {
@@ -27,7 +27,7 @@ const states = [
     description: "Hill shrines and local handicrafts.",
     image: "uttarakhand.jpg",
     silhouette: "uk-outline.png",
-    url: "#",
+    url: "products.html?state=Uttarakhand",
     hintText: "Handwoven woolens, copperware, and more."
   },   
   {
@@ -36,7 +36,7 @@ const states = [
     description: "",
     image: "gujarat.jpg",    // lives in assets/img/
     silhouette: "jk-outline.png", // optional, lives in assets/img/
-    url: "#",
+    url: "products.html?state=Gujarat",
     hintText: ""
   },
   {
@@ -44,7 +44,7 @@ const states = [
     region: "East",
     description: "Desert forts and rich craft traditions.",
     image: "assam.jpg",
-    url: "#",
+    url: "products.html?state=Assam",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -52,7 +52,7 @@ const states = [
     region: "West",
     description: "Desert forts and rich craft traditions.",
     image: "rajasthan.jpg",
-    url: "#",
+    url: "products.html?state=Rajasthan",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -60,7 +60,7 @@ const states = [
     region: "West",
     description: "Desert forts and rich craft traditions.",
     image: "goa.jpg",
-    url: "#",
+    url: "products.html?state=Goa",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -68,7 +68,7 @@ const states = [
     region: "East",
     description: "Desert forts and rich craft traditions.",
     image: "arunachal-pradesh.jpg",
-    url: "#",
+    url: "products.html?state=Arunachal-Pradesh",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -76,7 +76,7 @@ const states = [
     region: "West",
     description: "Desert forts and rich craft traditions.",
     image: "maharashtra.jpg",
-    url: "#",
+    url: "products.html?state=Maharashtra",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -84,7 +84,7 @@ const states = [
     region: "West",
     description: "Desert forts and rich craft traditions.",
     image: "madhya-pradesh.jpg",
-    url: "#",
+    url: "products.html?state=Madhya-Pradesh",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -92,7 +92,7 @@ const states = [
     region: "West",
     description: "Desert forts and rich craft traditions.",
     image: "uttar-pradesh.jpg",
-    url: "#",
+    url: "products.html?state=Uttar-Pradesh",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -100,7 +100,7 @@ const states = [
     region: "West",
     description: "Desert forts and rich craft traditions.",
     image: "mizoram.jpg",
-    url: "#",
+    url: "products.html?state=Mizoram",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -108,7 +108,7 @@ const states = [
     region: "West",
     description: "Desert forts and rich craft traditions.",
     image: "kerala.jpg",
-    url: "#",
+    url: "products.html?state=Kerala",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -116,7 +116,7 @@ const states = [
     region: "West",
     description: "Desert forts and rich craft traditions.",
     image: "manipur.jpg",
-    url: "#",
+    url: "products.html?state=Manipur",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -124,7 +124,7 @@ const states = [
     region: "South",
     description: "Desert forts and rich craft traditions.",
     image: "karnataka.jpg",
-    url: "#",
+    url: "products.html?state=Karnataka",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -132,7 +132,7 @@ const states = [
     region: "South",
     description: "Desert forts and rich craft traditions.",
     image: "telangana.jpg",
-    url: "#",
+    url: "products.html?state=Telangana",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -140,7 +140,7 @@ const states = [
     region: "South",
     description: "Desert forts and rich craft traditions.",
     image: "tamil-nadu.jpg",
-    url: "#",
+    url: "products.html?state=Tamil-Nadu",
     hintText: "Block prints, blue pottery, leather work, and more."
   },
   {
@@ -148,7 +148,7 @@ const states = [
     region: "East",
     description: "Desert forts and rich craft traditions.",
     image: "nagaland.jpg",
-    url: "#",
+    url: "products.html?state=Nagaland",
     hintText: "Block prints, blue pottery, leather work, and more."
   }
   // add more state objects as needed
@@ -313,5 +313,120 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// ----- Header search bar: Enter key → products page -----
+// ----- Global header search → products page -----
+document.addEventListener("DOMContentLoaded", () => {
+  const globalSearch = document.getElementById("globalSearch");
+  if (!globalSearch) return;
 
+  globalSearch.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
 
+    e.preventDefault();
+    const term = globalSearch.value.trim();
+    const q = encodeURIComponent(term);
+
+    // go to products.html (no state → you can pick default there)
+    if (term) {
+      window.location.href = `products.html?q=${q}`;
+    } else {
+      window.location.href = `products.html`;
+    }
+  });
+});
+
+// ----- Global header autocomplete search -----
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("globalSearch");
+  if (!input) return;
+
+  const form = input.closest(".header-search");
+  if (!form) return;
+
+  // dropdown under existing header search
+  const resultsBox = document.createElement("div");
+  resultsBox.className = "header-search__results";
+  resultsBox.hidden = true;
+  form.appendChild(resultsBox);
+
+  const products = Array.isArray(window.ALL_PRODUCTS) ? window.ALL_PRODUCTS : [];
+
+  function hideResults() {
+    resultsBox.innerHTML = "";
+    resultsBox.hidden = true;
+  }
+
+  function showResults(matches) {
+    if (!matches.length) {
+      hideResults();
+      return;
+    }
+    resultsBox.innerHTML = "";
+    matches.slice(0, 5).forEach((p) => {
+      const item = document.createElement("div");
+      item.className = "header-search__result-item";
+      item.innerHTML = `
+        <span>${p.name}</span>
+        <span style="color:#856a5f;">₹ ${p.price.toLocaleString("en-IN")}</span>
+      `;
+      item.addEventListener("click", () => {
+        const urlState = encodeURIComponent(p.state);
+        const urlName = encodeURIComponent(p.name);
+        window.location.href = `products.html?state=${urlState}&q=${urlName}`;
+      });
+      resultsBox.appendChild(item);
+    });
+    resultsBox.hidden = false;
+  }
+
+  input.addEventListener("input", () => {
+    const term = input.value.toLowerCase().trim();
+    if (!term) {
+      hideResults();
+      return;
+    }
+    const matches = products.filter(
+      (p) =>
+        p.name.toLowerCase().includes(term) ||
+        (p.meta || "").toLowerCase().includes(term)
+    );
+    showResults(matches);
+  });
+
+  // Enter → full search page
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const term = input.value.trim();
+      if (!term) return;
+      const q = encodeURIComponent(term);
+      window.location.href = `products.html?q=${q}`;
+    } else if (e.key === "Escape") {
+      hideResults();
+    }
+  });
+
+  // click outside hides dropdown
+  document.addEventListener("click", (e) => {
+    if (!form.contains(e.target)) {
+      hideResults();
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const globalSearch = document.getElementById("globalSearch");
+  if (!globalSearch) return;
+
+  globalSearch.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+
+    e.preventDefault();
+    const term = globalSearch.value.trim();
+    if (!term) return;
+
+    const q = encodeURIComponent(term);
+    // Go to products page; products.js will handle filtering
+    window.location.href = `products.html?q=${q}`;
+  });
+});
